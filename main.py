@@ -9,37 +9,52 @@ bot = telebot.TeleBot(token)
 @bot.message_handler(content_types=["text"])
 def handle_text1(message):
 
-    if message.text == ("Пн"):
+    if message.text == "2Пн":
         bot.send_message(message.from_user.id, "1. Питон(л)")
         bot.send_message(message.from_user.id, "2. Excel(пр)/Питон(пр)")
         bot.send_message(message.from_user.id, "3. -/Теория вероятности(пр)")
         bot.send_message(message.from_user.id, "4. Теория вероятности(л)")
 
-    elif message.text == "Вт":
+    elif message.text == "1Пн":
+        bot.send_message(message.from_user.id, "1. Питон(л)\n2. - / ТЙМС(пр)\n3. - / CМП(пр)\n4.ТЙМС(л)")
+
+    elif message.text == "2Вт":
         bot.send_message(message.from_user.id, "1. Философия")
         bot.send_message(message.from_user.id, "2. -")
         bot.send_message(message.from_user.id, "3. Excel(л)")
 
-    elif message.text == "Ср":
+    elif message.text == "1Вт":
+        bot.send_message(message.from_user.id, "1. СУК\n2. ПЗЕОМ(пр) / -\n3. ПЗЕОМ(л)")
+
+    elif message.text == "2Ср":
         bot.send_message(message.from_user.id, "1. Мат анализ(л)")
         bot.send_message(message.from_user.id, "2. -")
         bot.send_message(message.from_user.id, "3. Дифференциальные уравнения(пр)/АСД(пр)")
         bot.send_message(message.from_user.id, "4. Вступление в специальность(л)")
         bot.send_message(message.from_user.id, "5. Физ-ра")
 
+    elif message.text == "1Ср":
+        bot.send_message(message.from_user.id, "1. Мат анализ(л)\n2. -\n3. АСД(пр) / -\n4.Вступ до фаху(л) / -\n5. Физ-ра")
 
-    elif message.text == "Чт":
+    elif message.text == "2Чт":
         bot.send_message(message.from_user.id, "1. Вступление в специальность(пр)")
         bot.send_message(message.from_user.id, "2. Дифф уравнения(л)")
 
-    elif message.text == "Пт":
+    elif message.text == "1Чт":
+        bot.send_message(message.from_user.id, "1. Диффуры(пр) / Вступ до фаху(пр)\n2. Диффуры(л)")
+
+    elif message.text == "2Пт":
         bot.send_message(message.from_user.id, "1. Философия(пр)")
         bot.send_message(message.from_user.id, "2. АСД(л)")
         bot.send_message(message.from_user.id, "3. -")
         bot.send_message(message.from_user.id, "4. Мат анализ(пр)")
 
+    elif message.text == "1Пт":
+        bot.send_message(message.from_user.id, "1. Философия(пр)\n2. АСД(л)\n3. -\n4. Мат анализ(пр)")
+
     else:
-        bot.send_message(message.from_user.id, "Введи Пн/Вт/Ср/Чт/Пт")
+        bot.send_message(message.from_user.id, "Введи в формате\n1Пн - рассписание на понедельник для первой группы\n"
+                                               "2Пн - расписание на понедельник для второй группы")
 
 @server.route('/' + token, methods=['POST'])
 def get_message():
