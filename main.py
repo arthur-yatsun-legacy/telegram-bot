@@ -10,11 +10,11 @@ bot = telebot.TeleBot(token)
 # orgainizer = 0
 #
 @bot.message_handler(commands=['start'])
-def main_menu(self, message):
+def main_menu(message):
     markup = telebot.types.ReplyKeyboardMarkup(True, False)
     markup.row('124-17-1')
     markup.row('124-17-2')
-    self.bot.send_message(message.from_user.id, 'Выберите группу:', reply_markup=markup)
+    bot.send_message(message.from_user.id, 'Выберите группу:', reply_markup=markup)
 #
 #
 # @bot.message_handler(func=lambda mess: "124-17-1" == mess.text, content_types=['text'])
