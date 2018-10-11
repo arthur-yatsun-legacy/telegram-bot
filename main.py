@@ -20,7 +20,7 @@ def handle_text(message):
 @server.route("/")
 def web_hook():
     bot.remove_webhook()
-    bot.set_webhook(url='https://glacial-lowlands-23073.herokuapp.com/' + token)
+    bot.set_webhook(url='https://telegram-bot-s.herokuapp.com/' + token)
     return "CONNECTED", 200
 
 if __name__ == '__main__':
