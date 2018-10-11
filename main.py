@@ -8,6 +8,13 @@ server = Flask(__name__)
 bot = telebot.TeleBot(token)
 global orgainizer
 
+@bot.message_handler(commands=['start'])
+def main_menu(message):
+    markup = telebot.types.ReplyKeyboardMarkup(True, False)
+    markup.row('124-17-1')
+    markup.row('124-17-2')
+    bot.send_message(message.from_user.id, 'Выберите группу:', reply_markup=markup)
+
 @bot.message_handler(func=lambda mess: "124-17-1" == mess.text, content_types=['text'])
 def days(message):
     global orgainizer
@@ -34,6 +41,7 @@ def days(message):
 def handle_text(message):
     main_menu(message)
 
+
 @bot.message_handler(func=lambda mess: "Понедельник" == mess.text, content_types=['text'])
 def handle_text(message):
     if orgainizer == 1:
@@ -44,6 +52,7 @@ def handle_text(message):
         bot.send_message(message.from_user.id, "3. -/Теория вероятности(пр)")
         bot.send_message(message.from_user.id, "4. Теория вероятности(л)")
 
+
 @bot.message_handler(func=lambda mess: "Вторник" == mess.text, content_types=['text'])
 def handle_text(message):
     if orgainizer == 1:
@@ -52,6 +61,32 @@ def handle_text(message):
         bot.send_message(message.from_user.id, "1. Философия")
         bot.send_message(message.from_user.id, "2. -")
         bot.send_message(message.from_user.id, "3. Excel(л)")
+
+
+@bot.message_handler(func=lambda mess: "Среда" == mess.text, content_types=['text'])
+def handle_text(message):
+    if orgainizer == 1:
+        bot.send_message(message.from_user.id,
+                         "1. Мат анализ(л)\n2. -\n3. АСД(пр) / -\n4.Вступ до фаху(л) / -\n5. Физ-ра")
+    elif orgainizer == 2:
+        bot.send_message(message.from_user.id, "1. Мат анализ(л)")
+        bot.send_message(message.from_user.id, "2. -")
+        bot.send_message(message.from_user.id, "3. Дифференциальные уравнения(пр)/АСД(пр)")
+        bot.send_message(message.from_user.id, "4. Вступление в специальность(л)")
+        bot.send_message(message.from_user.id, "5. Физ-ра")
+
+
+@bot.message_handler(func=lambda mess: "Четверг" == mess.text, content_types=['text'])
+def handle_text(message):
+    if orgainizer == 1:
+        bot.send_message(message.from_user.id,
+                         "1. Мат анализ(л)\n2. -\n3. АСД(пр) / -\n4.Вступ до фаху(л) / -\n5. Физ-ра")
+    elif orgainizer == 2:
+        bot.send_message(message.from_user.id, "1. Мат анализ(л)")
+        bot.send_message(message.from_user.id, "2. -")
+        bot.send_message(message.from_user.id, "3. Дифференциальные уравнения(пр)/АСД(пр)")
+        bot.send_message(message.from_user.id, "4. Вступление в специальность(л)")
+        bot.send_message(message.from_user.id, "5. Физ-ра")
 
 @bot.message_handler(content_types=["text"])
 def handle_text1(message):
