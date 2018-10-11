@@ -31,11 +31,11 @@ def days(message):
     global orgainizer
     orgainizer = 2
     markup = telebot.types.ReplyKeyboardMarkup(True, False)
-    markup.row('Вернуться')
     markup.row('Понедельник', 'Вторник')
     markup.row('Среда', 'Четверг')
-    markup.row('Пятница')
+    markup.row('Пятница', 'Вернуться')
     bot.send_message(message.from_user.id, 'Выберите день:', reply_markup=markup)
+
 
 @bot.message_handler(func=lambda mess: "Вернуться" == mess.text, content_types=['text'])
 def handle_text(message):
