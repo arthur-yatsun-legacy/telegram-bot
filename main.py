@@ -41,7 +41,10 @@ def handle_text1(message):
     else:
         bot.send_message(message.from_user.id, "Введи Пн/Вт/Ср/Чт/Пт")
 
-
+@server.route('/' + token, methods=['POST'])
+def get_message():
+    bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
+    return "POST", 200
 
 @server.route("/")
 def web_hook():
