@@ -6,7 +6,7 @@ from flask import Flask, request
 token = '633492132:AAGL0sgeSSe5zUSYEw05Pu0i6fP8IzYO29w'
 server = Flask(__name__)
 bot = telebot.TeleBot(token)
-orgainizer = 0
+global orgainizer
 
 @bot.message_handler(commands=['start'])
 def main_menu(message):
@@ -18,6 +18,7 @@ def main_menu(message):
 
 @bot.message_handler(func=lambda mess: "124-17-1" == mess.text, content_types=['text'])
 def days(message):
+    global orgainizer
     orgainizer = 1
     markup = telebot.types.ReplyKeyboardMarkup(True, False)
     markup.row('Понедельник', 'Вторник')
@@ -27,7 +28,9 @@ def days(message):
 
 @bot.message_handler(func=lambda mess: "124-17-1" == mess.text, content_types=['text'])
 def days(message):
+    global orgainizer
     orgainizer = 2
+
     markup = telebot.types.ReplyKeyboardMarkup(True, False)
     markup.row('Понедельник', 'Вторник')
     markup.row('Среда', 'Четверг')
@@ -43,6 +46,7 @@ def handle_text(message):
         bot.send_message(message.from_user.id, "2. Excel(пр)/Питон(пр)")
         bot.send_message(message.from_user.id, "3. -/Теория вероятности(пр)")
         bot.send_message(message.from_user.id, "4. Теория вероятности(л)")
+
 
 
 @bot.message_handler(content_types=["text"])
