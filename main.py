@@ -31,13 +31,13 @@ def days(message):
     global orgainizer
     orgainizer = 2
     markup = telebot.types.ReplyKeyboardMarkup(True, False)
-    markup.row('Вернуться к группам')
+    markup.row('Вернуться')
     markup.row('Понедельник', 'Вторник')
     markup.row('Среда', 'Четверг')
     markup.row('Пятница')
     bot.send_message(message.from_user.id, 'Выберите день:', reply_markup=markup)
 
-@bot.message_handler(func=lambda mess: "Вернуться к группам" == mess.text, content_types=['text'])
+@bot.message_handler(func=lambda mess: "Вернуться" == mess.text, content_types=['text'])
 def handle_text(message):
     main_menu(message)
 
@@ -79,14 +79,22 @@ def handle_text(message):
 @bot.message_handler(func=lambda mess: "Четверг" == mess.text, content_types=['text'])
 def handle_text(message):
     if orgainizer == 1:
-        bot.send_message(message.from_user.id,
-                         "1. Мат анализ(л)\n2. -\n3. АСД(пр) / -\n4.Вступ до фаху(л) / -\n5. Физ-ра")
+        bot.send_message(message.from_user.id, "1. Диффуры(пр) / Вступ до фаху(пр)\n2. Диффуры(л)")
     elif orgainizer == 2:
-        bot.send_message(message.from_user.id, "1. Мат анализ(л)")
-        bot.send_message(message.from_user.id, "2. -")
-        bot.send_message(message.from_user.id, "3. Дифференциальные уравнения(пр)/АСД(пр)")
-        bot.send_message(message.from_user.id, "4. Вступление в специальность(л)")
-        bot.send_message(message.from_user.id, "5. Физ-ра")
+        bot.send_message(message.from_user.id, "1. Вступление в специальность(пр)")
+        bot.send_message(message.from_user.id, "2. Дифф уравнения(л)")
+
+
+@bot.message_handler(func=lambda mess: "Пятница" == mess.text, content_types=['text'])
+def handle_text(message):
+    if orgainizer == 1:
+        bot.send_message(message.from_user.id, "1. Философия(пр)\n2. АСД(л)\n3. -\n4. Мат анализ(пр)")
+    elif orgainizer == 2:
+        bot.send_message(message.from_user.id, "1. Философия(пр)")
+        bot.send_message(message.from_user.id, "2. АСД(л)")
+        bot.send_message(message.from_user.id, "3. -")
+        bot.send_message(message.from_user.id, "4. Мат анализ(пр)")
+
 
 @bot.message_handler(content_types=["text"])
 def handle_text1(message):
