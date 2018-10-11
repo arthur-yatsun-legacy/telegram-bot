@@ -1,10 +1,37 @@
 import telebot
 import os
 from flask import Flask, request
+from telegram_bot import keyboard
 
 token = '633492132:AAGL0sgeSSe5zUSYEw05Pu0i6fP8IzYO29w'
 server = Flask(__name__)
 bot = telebot.TeleBot(token)
+orgainizer = 0
+
+@bot.message_handler(commands=['start'])
+def main_menu(self, message):
+    markup = telebot.types.ReplyKeyboardMarkup(True, False)
+    markup.row('124-17-1')
+    markup.row('124-17-2')
+    self.bot.send_message(message.from_user.id, 'Выберите группу:', reply_markup=markup)
+
+
+@bot.message_handler(func=lambda mess: "124-17-1" == mess.text, content_types=['text'])
+def handle_text(message):
+    orgainizer = 1
+    keyboard.days(message)
+
+
+@bot.message_handler(func=lambda mess: "Понедельник" == mess.text, content_types=['text'])
+def handle_text(message):
+    if orgainizer == 1:
+        bot.send_message(message.from_user.id, "1. Питон(л)\n2. - / ТЙМС(пр)\n3. - / CМП(пр)\n4.ТЙМС(л)")
+    elif orgainizer == 2:
+        bot.send_message(message.from_user.id, "1. Питон(л)")
+        bot.send_message(message.from_user.id, "2. Excel(пр)/Питон(пр)")
+        bot.send_message(message.from_user.id, "3. -/Теория вероятности(пр)")
+        bot.send_message(message.from_user.id, "4. Теория вероятности(л)")
+
 
 @bot.message_handler(content_types=["text"])
 def handle_text1(message):
@@ -56,10 +83,12 @@ def handle_text1(message):
         bot.send_message(message.from_user.id, "Введи в формате\n1Пн - рассписание на понедельник для первой группы\n"
                                                "2Пн - расписание на понедельник для второй группы")
 
+
 @server.route('/' + token, methods=['POST'])
 def get_message():
     bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
     return "POST", 200
+
 
 @server.route("/")
 def web_hook():
