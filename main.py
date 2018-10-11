@@ -6,15 +6,41 @@ token = '633492132:AAGL0sgeSSe5zUSYEw05Pu0i6fP8IzYO29w'
 server = Flask(__name__)
 bot = telebot.TeleBot(token)
 
+@bot.message_handler(content_types=["text"])
+def handle_text1(message):
 
-@bot.message_handler(commands=['start'])
-def handle_text(message):
-    user_markup = telebot.types.ReplyKeyboardMarkup(True, False)
-    user_markup.row('Получить расписание')
-    user_markup.row('Получить расписание по подписке')
-    user_markup.row('Время пар')
-    user_markup.row('Обновления', 'Обратная связь')
-    bot.send_message(message.from_user.id, 'Выберите пункт меню:', reply_markup=user_markup)
+    if message.text == ("Пн"):
+        bot.send_message(message.from_user.id, "1. Питон(л)")
+        bot.send_message(message.from_user.id, "2. Excel(пр)/Питон(пр)")
+        bot.send_message(message.from_user.id, "3. -/Теория вероятности(пр)")
+        bot.send_message(message.from_user.id, "4. Теория вероятности(л)")
+
+    elif message.text == "Вт":
+        bot.send_message(message.from_user.id, "1. Философия")
+        bot.send_message(message.from_user.id, "2. -")
+        bot.send_message(message.from_user.id, "3. Excel(л)")
+
+    elif message.text == "Ср":
+        bot.send_message(message.from_user.id, "1. Мат анализ(л)")
+        bot.send_message(message.from_user.id, "2. -")
+        bot.send_message(message.from_user.id, "3. Дифференциальные уравнения(пр)/АСД(пр)")
+        bot.send_message(message.from_user.id, "4. Вступление в специальность(л)")
+        bot.send_message(message.from_user.id, "5. Физ-ра")
+
+
+    elif message.text == "Чт":
+        bot.send_message(message.from_user.id, "1. Вступление в специальность(пр)")
+        bot.send_message(message.from_user.id, "2. Дифф уравнения(л)")
+
+    elif message.text == "Пт":
+        bot.send_message(message.from_user.id, "1. Философия(пр)")
+        bot.send_message(message.from_user.id, "2. АСД(л)")
+        bot.send_message(message.from_user.id, "3. -")
+        bot.send_message(message.from_user.id, "4. Мат анализ(пр)")
+
+    else:
+        bot.send_message(message.from_user.id, "Введи Пн/Вт/Ср/Чт/Пт")
+
 
 
 @server.route("/")
