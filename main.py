@@ -8,6 +8,7 @@ server = Flask(__name__)
 bot = telebot.TeleBot(token)
 global orgainizer
 
+
 @bot.message_handler(commands=['start'])
 def main_menu(message):
     markup = telebot.types.ReplyKeyboardMarkup(True, False)
@@ -22,7 +23,7 @@ def days(message):
     markup = telebot.types.ReplyKeyboardMarkup(True, False)
     markup.row('Понедельник', 'Вторник')
     markup.row('Среда', 'Четверг')
-    markup.row('Пятница')
+    markup.row('Пятница', 'Вернуться')
     bot.send_message(message.from_user.id, 'Выберите день:', reply_markup=markup)
 
 
@@ -152,6 +153,7 @@ def main_menu(message):
     markup.row('124-17-1')
     markup.row('124-17-2')
     bot.send_message(message.from_user.id, 'Выберите группу:', reply_markup=markup)
+
 
 @server.route('/' + token, methods=['POST'])
 def get_message():
