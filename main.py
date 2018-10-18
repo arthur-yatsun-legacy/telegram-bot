@@ -162,14 +162,16 @@ def handle_text1(message):
         bot.send_message(message.from_user.id, "1. Философия(пр)\n2. АСД(л)\n3. -\n4. Мат анализ(пр)")
 
     else:
-        bot.send_message(message.from_user.id, "Введи в формате\n1Пн - рассписание на понедельник для первой группы\n"
-                                               "2Пн - расписание на понедельник для второй группы")
+        # bot.send_message(message.from_user.id, "Введи в формате\n1Пн - рассписание на понедельник для первой группы\n"
+        #                                        "2Пн - расписание на понедельник для второй группы")
+        bot.send_message(message.from_user.id, "Не понимаю о чем ты")
 
 
 def main_menu(message):
     markup = telebot.types.ReplyKeyboardMarkup(True, False)
     markup.row('124-17-1')
     markup.row('124-17-2')
+    markup.row('Обратная связь')
     bot.send_message(message.from_user.id, 'Выберите группу:', reply_markup=markup)
 
 
