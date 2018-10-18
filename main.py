@@ -65,6 +65,7 @@ def handle_text(message):
         bot.send_message(message.from_user.id, "Выберите группу, расписание которой хотите получить, для этого вам нужно вернуться обратно"
                                                "\n\n"
                                                "Да, меня тоже бесит, но идет работа над этой штукой")
+    main_menu(message)
 
 
 @bot.message_handler(func=lambda mess: "Вторник" == mess.text, content_types=['text'])
@@ -75,6 +76,7 @@ def handle_text(message):
         bot.send_message(message.from_user.id, "1. Философия")
         bot.send_message(message.from_user.id, "2. -")
         bot.send_message(message.from_user.id, "3. Excel(л)")
+    main_menu(message)
 
 
 @bot.message_handler(func=lambda mess: "Среда" == mess.text, content_types=['text'])
@@ -88,6 +90,7 @@ def handle_text(message):
         bot.send_message(message.from_user.id, "3. Дифференциальные уравнения(пр)/АСД(пр)")
         bot.send_message(message.from_user.id, "4. Вступление в специальность(л)")
         bot.send_message(message.from_user.id, "5. Физ-ра")
+    main_menu(message)
 
 
 @bot.message_handler(func=lambda mess: "Четверг" == mess.text, content_types=['text'])
@@ -97,6 +100,7 @@ def handle_text(message):
     elif orgainizer == 2:
         bot.send_message(message.from_user.id, "1. Вступление в специальность(пр)")
         bot.send_message(message.from_user.id, "2. Дифф уравнения(л)")
+    main_menu(message)
 
 
 @bot.message_handler(func=lambda mess: "Пятница" == mess.text, content_types=['text'])
@@ -108,6 +112,7 @@ def handle_text(message):
         bot.send_message(message.from_user.id, "2. АСД(л)")
         bot.send_message(message.from_user.id, "3. -")
         bot.send_message(message.from_user.id, "4. Мат анализ(пр)")
+    main_menu(message)
 
 
 @bot.message_handler(content_types=["text"])
