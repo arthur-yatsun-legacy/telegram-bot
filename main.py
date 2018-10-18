@@ -14,7 +14,9 @@ def main_menu(message):
     markup = telebot.types.ReplyKeyboardMarkup(True, False)
     markup.row('124-17-1')
     markup.row('124-17-2')
+    markup.row('Обратная связь')
     bot.send_message(message.from_user.id, 'Выберите группу:', reply_markup=markup)
+
 
 @bot.message_handler(func=lambda mess: "124-17-1" == mess.text, content_types=['text'])
 def days(message):
@@ -38,6 +40,11 @@ def days(message):
     bot.send_message(message.from_user.id, 'Выберите день:', reply_markup=markup)
 
 
+@bot.message_handler(func=lambda mess: "Обратная связь" == mess.text, content_types=['text'])
+def author(message):
+    bot.send_message(message.from_user.id, "Если есть предложения и пожелания пишите - @mr_dolfin")
+
+
 @bot.message_handler(func=lambda mess: "Вернуться" == mess.text, content_types=['text'])
 def handle_text(message):
     main_menu(message)
@@ -52,6 +59,10 @@ def handle_text(message):
         bot.send_message(message.from_user.id, "2. Excel(пр)/Питон(пр)")
         bot.send_message(message.from_user.id, "3. -/Теория вероятности(пр)")
         bot.send_message(message.from_user.id, "4. Теория вероятности(л)")
+    else:
+        bot.send_message(message.from_user.id, "Выберите группу, расписание которой хотите получить, для этого вам нужно вернуться обратно"
+                                               "\n\n"
+                                               "Да, меня тоже бесит, но идет работа над штукой")
 
 
 @bot.message_handler(func=lambda mess: "Вторник" == mess.text, content_types=['text'])
