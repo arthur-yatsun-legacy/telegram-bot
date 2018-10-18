@@ -6,6 +6,8 @@ from flask import Flask, request
 token = '633492132:AAGL0sgeSSe5zUSYEw05Pu0i6fP8IzYO29w'
 server = Flask(__name__)
 bot = telebot.TeleBot(token)
+
+
 global orgainizer
 
 
@@ -62,7 +64,7 @@ def handle_text(message):
     else:
         bot.send_message(message.from_user.id, "Выберите группу, расписание которой хотите получить, для этого вам нужно вернуться обратно"
                                                "\n\n"
-                                               "Да, меня тоже бесит, но идет работа над штукой")
+                                               "Да, меня тоже бесит, но идет работа над этой штукой")
 
 
 @bot.message_handler(func=lambda mess: "Вторник" == mess.text, content_types=['text'])
