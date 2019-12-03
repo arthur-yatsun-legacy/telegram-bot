@@ -1,12 +1,12 @@
 import telebot
 import os
 from flask import Flask, request
+
 # from telegram_bot import keyboard
 
-token = '633492132:AAGL0sgeSSe5zUSYEw05Pu0i6fP8IzYO29w'
+token = '996680656:AAEyecvkOAewCP4Qbmmyuxeg7Xruyeh9a1U'
 server = Flask(__name__)
 bot = telebot.TeleBot(token)
-
 
 global orgainizer
 
@@ -62,9 +62,10 @@ def handle_text(message):
         bot.send_message(message.from_user.id, "3. -/Теория вероятности(пр)")
         bot.send_message(message.from_user.id, "4. Теория вероятности(л)")
     else:
-        bot.send_message(message.from_user.id, "Выберите группу, расписание которой хотите получить, для этого вам нужно вернуться обратно"
-                                               "\n\n"
-                                               "Да, меня тоже бесит, но идет работа над этой штукой")
+        bot.send_message(message.from_user.id,
+                         "Выберите группу, расписание которой хотите получить, для этого вам нужно вернуться обратно"
+                         "\n\n"
+                         "Да, меня тоже бесит, но идет работа над этой штукой")
     main_menu(message)
 
 
@@ -117,7 +118,6 @@ def handle_text(message):
 
 @bot.message_handler(content_types=["text"])
 def handle_text1(message):
-
     if message.text == "2Пн":
         bot.send_message(message.from_user.id, "1. Питон(л)")
         bot.send_message(message.from_user.id, "2. Excel(пр)/Питон(пр)")
@@ -143,7 +143,8 @@ def handle_text1(message):
         bot.send_message(message.from_user.id, "5. Физ-ра")
 
     elif message.text == "1Ср":
-        bot.send_message(message.from_user.id, "1. Мат анализ(л)\n2. -\n3. АСД(пр) / -\n4.Вступ до фаху(л) / -\n5. Физ-ра")
+        bot.send_message(message.from_user.id,
+                         "1. Мат анализ(л)\n2. -\n3. АСД(пр) / -\n4.Вступ до фаху(л) / -\n5. Физ-ра")
 
     elif message.text == "2Чт":
         bot.send_message(message.from_user.id, "1. Вступление в специальность(пр)")
@@ -184,8 +185,9 @@ def get_message():
 @server.route("/")
 def web_hook():
     bot.remove_webhook()
-    bot.set_webhook(url='https://telegram-bot-s.herokuapp.com/' + token)
+    bot.set_webhook(url='https://heroku-test-app-a.herokuapp.com/' + token)
     return "CONNECTED", 200
+
 
 if __name__ == '__main__':
     server.run(host="0.0.0.0", port=os.environ.get('PORT', 5000))
